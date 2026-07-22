@@ -443,8 +443,8 @@ tab1, tab2 = st.tabs(["📊 대시보드 보기", "📤 파일 업로드"])
 with tab2:
     st.header("📤 월별 VOC 데이터 업로드")
     
-    # 관리자 접근 패스워드
-    ADMIN_PASSWORD = "us2025!!"  # 팀 접근용 패스워드
+    # 관리자 접근 패스워드 (st.secrets 또는 환경변수에서 로드)
+    ADMIN_PASSWORD = st.secrets.get("ADMIN_PASSWORD", os.environ.get("ADMIN_PASSWORD", ""))
     
     admin_password = st.text_input(
         "🔐 관리자 패스워드",

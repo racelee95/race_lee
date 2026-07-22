@@ -103,7 +103,10 @@ TEMPLATE_TEXTS_JP = [
 ]
 
 
-def load_excel_file(file_path, password="!drw951130"):
+def load_excel_file(file_path, password=None):
+    if password is None:
+        import os
+        password = os.environ.get("EXCEL_PASSWORD", "")
     """암호화된 Excel 파일 로드"""
     try:
         with open(file_path, 'rb') as f:
@@ -263,7 +266,10 @@ def process_voc_data(df, is_japan=False):
     return df_filtered
 
 
-def generate_monthly_data(file_path, month, api_key, password="!drw951130", is_japan=False):
+def generate_monthly_data(file_path, month, api_key, password=None, is_japan=False):
+    if password is None:
+        import os
+        password = os.environ.get("EXCEL_PASSWORD", "")
     """월별 VOC 데이터 생성 (AI 요약 포함)"""
     print(f"📂 {month} 데이터 처리 중...")
 
